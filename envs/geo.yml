@@ -1,0 +1,71 @@
+# General analysis / pre- and post-processing environment for Borah.
+# Covers schnaps-borah (setup/, post/), parflow-borah (code/), erf-borah (setup/),
+# idaho-summer-precip, idaho-wrf-zarr and wy2026-idaho-snow-drought.
+# Do not install into this env by hand: add the package here, then `bash make_env.sh geo --resolve`.
+name: geo
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - setuptools<81     # wrf-python still imports pkg_resources
+  # arrays, tables, stats
+  - numpy>=2
+  - scipy
+  - pandas>=2.2
+  - xarray>=2025.6   # zarr 3 support (idaho-wrf-zarr)
+  - dask
+  - distributed
+  - bottleneck
+  - statsmodels
+  - scikit-learn
+  - scikit-image
+  - joblib
+  # file formats
+  - netcdf4
+  - h5netcdf
+  - h5py
+  - pyhdf
+  - zarr>=3.1
+  - numcodecs
+  - cftime
+  - pyyaml
+  # GRIB (HRRR, ECMWF) and WRF output
+  - python-eccodes
+  - cfgrib
+  - wgrib2
+  - wrf-python
+  - metpy
+  # geospatial
+  - gdal
+  - rasterio
+  - rioxarray
+  - pyproj
+  - affine
+  - shapely>=2
+  - geopandas
+  - pyogrio
+  - cartopy
+  - pysheds
+  # plotting
+  - matplotlib
+  - pillow
+  # downloads
+  - requests
+  - fsspec
+  - s3fs
+  - gcsfs
+  - aiohttp
+  - cdsapi
+  - earthaccess
+  # command-line NetCDF tools
+  - nco
+  - cdo
+  # notebooks
+  - jupyterlab
+  - ipykernel
+  - nbformat
+  - nbclient
+  - pip:
+      - pftools==1.3.15   # ParFlow Python tools, matches ParFlow 3.15.0
+      - xwrf
